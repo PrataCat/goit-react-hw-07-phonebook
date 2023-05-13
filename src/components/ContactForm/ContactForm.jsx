@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { NotificationManager } from 'react-notifications';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 import css from './ContactForm.module.css';
 
 const ContactForm = () => {
@@ -11,7 +11,7 @@ const ContactForm = () => {
   const [userNumber, setUserNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const items = useSelector(selectContacts);
 
   const handleInputChange = e => {
     const { name, value } = e.currentTarget;
@@ -24,7 +24,7 @@ const ContactForm = () => {
 
   const handleSubmitForm = e => {
     e.preventDefault();
-    if (contacts.some(el => el.name === userName)) {
+    if (items.some(el => el.name === userName)) {
       NotificationManager.info(`${userName} is already in contacts.`);
     } else {
       dispatch(addContact(userName, userNumber));
