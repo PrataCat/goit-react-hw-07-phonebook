@@ -27,7 +27,7 @@ const ContactForm = () => {
     if (items.some(el => el.name === userName)) {
       NotificationManager.info(`${userName} is already in contacts.`);
     } else {
-      dispatch(addContact(userName, userNumber));
+      dispatch(addContact({ name: userName, number: userNumber }));
     }
     reset();
   };

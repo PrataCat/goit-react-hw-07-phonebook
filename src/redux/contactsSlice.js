@@ -34,7 +34,7 @@ const fetchContactsSuccess = (state, action) => {
 const addContactSuccess = (state, action) => {
   state.contacts.isLoading = false;
   state.contacts.error = null;
-  state.contacts.items.push(action.payload);
+  state.contacts.items.unshift(action.payload);
 };
 
 const deleteContactSuccess = (state, action) => {
